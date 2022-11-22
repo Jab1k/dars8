@@ -3,5 +3,15 @@ import 'package:flutter_application_3/dars.dart';
 import 'package:flutter_application_3/praktice.dart';
 
 void main() {
-  runApp(const OnePage());
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp
+({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(home: OnePage());
+  }
 }
