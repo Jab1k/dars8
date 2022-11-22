@@ -8,47 +8,55 @@ class OnePage extends StatefulWidget {
 }
 
 class _OnePageState extends State<OnePage> {
-  @override
   int number = 0;
+  bool active = true;
+
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(),
-        body: Center(
-            child: Text(
-          'Son : $number',
-          style: TextStyle(fontSize: 35),
-        )),
-        floatingActionButton: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            GestureDetector(
-               onTap: () {
-            number++;
-            setState(() {});
-          },
-              child: Container(
-                width: 64,
-                height: 64,
-                decoration:
-                    BoxDecoration(color: Colors.blue, shape: BoxShape.circle),
-                child: Icon(Icons.add),
-              ),
+            AnimatedContainer(
+              duration: Duration(milliseconds: 700),
+              width: 200,
+              height: 200,
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: active ? Colors.red : Colors.black),
             ),
-            GestureDetector(
-               onTap: () {
-            number=0;
-            setState(() {});
-          },
-              child: Container(
-                width: 64,
-                height: 64,
-                decoration:
-                    BoxDecoration(color: Colors.blue, shape: BoxShape.circle),
-                child: Icon(Icons.exposure_minus_2),
-              ),
+            AnimatedContainer(
+              duration: Duration(milliseconds: 700),
+              width: 200,
+              height: 200,
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: active ? Colors.black : Colors.yellow),
             ),
+            AnimatedContainer(
+              duration: Duration(milliseconds: 700),
+              width: 200,
+              height: 200,
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: active ? Colors.black : Colors.green),
+            )
           ],
+        ),
+        floatingActionButton: GestureDetector(
+          onTap: () {
+            active = !active;
+            setState(() {});
+          },
+          child: Container(
+            width: 64,
+            height: 64,
+            decoration:
+                BoxDecoration(shape: BoxShape.circle, color: Colors.red),
+            child: Icon(Icons.select_all),
+          ),
         ),
       ),
     );
